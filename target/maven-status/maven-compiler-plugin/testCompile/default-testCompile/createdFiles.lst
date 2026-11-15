@@ -1,4 +1,0 @@
-com\bank\qa\listeners\TestListener.class
-com\bank\qa\reports\ExtentTestListener.class
-com\bank\qa\reports\ExtentReportManager.class
-com\bank\qa\tests\LoginTest.class
