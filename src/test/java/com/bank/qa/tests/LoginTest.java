@@ -1,6 +1,7 @@
 package com.bank.qa.tests;
 
 import java.io.File;
+import java.net.URL;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -39,11 +40,15 @@ public class LoginTest {
 
         driver.manage().window().maximize();
 
-        File htmlFile = new File(
-        	    "src/test/resources/practice_digital_banking_login-2.html"
-        	);
+        URL htmlFile = getClass()
+                .getClassLoader()
+                .getResource("practice_digital_banking_login-2.html");
 
-        	driver.get(htmlFile.getAbsolutePath());
+        if (htmlFile == null) {
+            throw new RuntimeException("HTML file not found!");
+        }
+
+        driver.get(htmlFile.toExternalForm());
 
         loginPage = new LoginPage(driver);
     }
