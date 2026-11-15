@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice Digital Banking Login</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; display: grid; place-items: center;
+      font-family: Arial, sans-serif; background: #eef3f8; color: #183047;
+    }
+    .card {
+      width: min(92vw, 410px); background: white; padding: 32px;
+      border-radius: 14px; box-shadow: 0 12px 35px rgba(20, 48, 75, .12);
+    }
+    .brand { font-size: 13px; font-weight: bold; letter-spacing: 1.5px; color: #176b87; }
+    h1 { margin: 12px 0 8px; font-size: 25px; }
+    .hint { color: #607386; font-size: 14px; line-height: 1.5; }
+    label { display: block; margin: 18px 0 7px; font-size: 14px; font-weight: bold; }
+    input {
+      width: 100%; padding: 12px; border: 1px solid #bdcbd7; border-radius: 7px;
+      font-size: 15px;
+    }
+    input:focus { outline: 2px solid #8bc4d8; border-color: #176b87; }
+    button {
+      width: 100%; margin-top: 22px; padding: 13px; border: 0; border-radius: 7px;
+      background: #176b87; color: white; font-size: 15px; font-weight: bold; cursor: pointer;
+    }
+    button:hover { background: #10566e; }
+    #message { min-height: 22px; margin-top: 15px; font-size: 14px; }
+    .error { color: #b42318; }
+    .success { color: #18794e; }
+    #dashboard { display: none; }
+    .account-box { margin-top: 20px; padding: 16px; background: #f1f7fa; border-radius: 8px; }
+    .note { margin-top: 22px; padding-top: 14px; border-top: 1px solid #e5edf2;
+      color: #6b7c8c; font-size: 12px; line-height: 1.5; }
+    .logout { background: #526575; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <section id="loginPage">
+      <div class="brand">PRACTICE DIGITAL BANKING</div>
+      <h1>Customer Login</h1>
+      <p class="hint">Training-only login page for Java, Selenium WebDriver and TestNG practice.</p>
+
+      <form id="loginForm">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" autocomplete="off"
+               placeholder="Enter username">
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password"
+               placeholder="Enter password">
+
+        <button id="loginBtn" type="submit">Login</button>
+      </form>
+      <p id="message" role="alert" aria-live="polite"></p>
+      <div class="note">
+        Demo credentials: <strong>testuser</strong> / <strong>Test@123</strong><br>
+        This is a local practice demo. Do not enter real banking credentials.
+      </div>
+    </section>
+
+    <section id="dashboard">
+      <div class="brand">PRACTICE DIGITAL BANKING</div>
+      <h1 id="dashboardHeading">Welcome to your dashboard</h1>
+      <p class="hint">You have successfully signed in to the training application.</p>
+      <div class="account-box">
+        <strong>Login status:</strong> Successful<br>
+        <strong>Signed-in user:</strong> <span id="loggedInUser"></span>
+      </div>
+      <button id="logoutBtn" class="logout" type="button">Logout</button>
+    </section>
+  </main>
+
+  <script>
+    const loginForm = document.getElementById("loginForm");
+    const message = document.getElementById("message");
+
+    loginForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+
+      if (username === "testuser" && password === "Test@123") {
+        document.getElementById("loggedInUser").textContent = username;
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("dashboard").style.display = "block";
+      } else {
+        message.textContent = "Invalid username or password. Please try again.";
+        message.className = "error";
+      }
+    });
+
+    document.getElementById("logoutBtn").addEventListener("click", function () {
+      document.getElementById("dashboard").style.display = "none";
+      document.getElementById("loginPage").style.display = "block";
+      document.getElementById("username").value = "";
+      document.getElementById("password").value = "";
+      message.textContent = "You have been logged out.";
+      message.className = "success";
+    });
+  </script>
+</body>
+</html>

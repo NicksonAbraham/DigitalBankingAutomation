@@ -39,10 +39,11 @@ public class LoginTest {
 
         driver.manage().window().maximize();
 
-        String filePath = System.getProperty("user.home")
-                + "/Downloads/practice_digital_banking_login-2.html";
+        File htmlFile = new File(
+        	    "src/test/resources/practice_digital_banking_login-2.html"
+        	);
 
-        driver.get(new File(filePath).toURI().toString());
+        	driver.get(htmlFile.getAbsolutePath());
 
         loginPage = new LoginPage(driver);
     }
