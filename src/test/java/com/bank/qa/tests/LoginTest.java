@@ -121,7 +121,7 @@ public class LoginTest {
             );
         }
     }
-    @Test(enabled= false)
+    @Test(enabled= true)
     public void intentionalFailureTest() {
     	Assert.fail("Testing automatic screeenshot capture");
     }
